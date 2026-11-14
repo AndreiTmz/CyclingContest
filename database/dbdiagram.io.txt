@@ -1,0 +1,62 @@
+Table competitors {
+  id int [not null, PK, increment]
+  first_name varchar(50) [not null]
+  last_name varchar(50) [not null]
+  date_of_birth date [not null]
+  email email [not null]
+  phone_number phone [not null]
+  gender enum('M, F') [not null]
+}
+
+Table categories {
+  id int [not null, PK, increment]
+  name varchar(50) [not null]
+  description varchar(100) [null]
+  image_name varchar(20) [null]
+}
+
+Table routes {
+  id int [not null, PK, increment]
+  center_lat decimal [not null]
+  center_lng decimal [not null]
+  origin_lat decimal [not null]
+  origin_lng decimal [not null]
+  destination_lat decimal [not null]
+  destination_lng decimal [not null]
+  waypoints json [null]
+}
+
+Table category_route {
+  category_id int [not null]
+  route_id int [not null]
+
+    indexes {
+    (category_id, route_id) [pk]
+  }
+}
+
+Table results {
+  competitor_id int [not null]
+  category_id int [not null]
+  finish_position int [null]
+  status enum('FINISHED', 'NOT_FINISHED', 'REGISTERED', 'DISQUALIFIED') [not null]
+  age_category enum('JUNIOR', 'INTERMEDIATE', 'SENIOR') [not null]
+
+  indexes {
+    (competitor_id, category_id) [pk]
+  }
+}
+
+Table admin_accounts {
+  id int [not null, pk, increment]
+  username varchar(50) [not null, unique]
+  password_hash hash [not null]
+}
+
+Ref: "competitors"."id" < "results"."competitor_id"
+
+Ref: "categories"."id" < "results"."category_id"
+
+Ref: "category_route"."category_id" ?> "categories"."id"
+
+Ref: "routes"."id" <? "category_route"."route_id"

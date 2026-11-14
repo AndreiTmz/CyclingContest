@@ -1,0 +1,56 @@
+services:
+  app:
+    container_name: cycling_contest_app
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "127.0.0.1:8000:80"
+    environment:
+      DB_HOST: db
+      DB_USER: ${MYSQL_USER:-app}
+      DB_PASSWORD: ${MYSQL_PASSWORD:-app}
+      DB_NAME: ${MYSQL_DATABASE:-cycling_contest}
+      GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY:-}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    container_name: cycling_contest_db
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-cycling_contest}
+      MYSQL_USER: ${MYSQL_USER:-app}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-app}
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database/db_init.sql:/docker-entrypoint-initdb.d/01-db_init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+  phpmyadmin:
+    container_name: cycling_contest_phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:80"
+    environment:
+      PMA_HOST: db
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  db_data:
