@@ -58,5 +58,10 @@ function prev()
 
 function showImg(imgPrev)
 {
+    var imageIndex = images.indexOf(imgPrev.getAttribute('src'));
+    if (imageIndex !== -1) {
+        num = imageIndex;
+    }
+
     document.getElementById('slider').src = imgPrev.src;
 }
