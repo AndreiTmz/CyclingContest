@@ -246,9 +246,15 @@
             <hr />
                 
             <div>
-                <div class="gender">
-                    <input type="radio" name="gender" value="m" <?php if ($gender === "m") { ?> checked <?php } ?> required>Male</input>
-                    <input type="radio" name="gender" value="f" <?php if ($gender === "f") { ?> checked <?php } ?>>Female</input>
+                <div class="gender segmented-control">
+                    <label>
+                        <input type="radio" name="gender" value="m" <?php if ($gender === "m") { ?> checked <?php } ?> required />
+                        <span>Male</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="f" <?php if ($gender === "f") { ?> checked <?php } ?> />
+                        <span>Female</span>
+                    </label>
                 </div>
                 <span class="<?php echo isset($validation_errors['gender']) ? 'error' : ''; ?>"><?php echo htmlspecialchars($validation_errors['gender'] ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
             </div>
@@ -256,28 +262,32 @@
             <hr />
 
             <div>
+                <div class="category-field">
                     <span class=""><span class=""></span>Category*</span>
-                    <select name="categories[]" class="right" multiple required>
+                    <div class="category-tiles" role="group" aria-label="Categories">
                         <?php
                             foreach ($available_categories as $row) {
                                 $category_id_value = (string)$row['id'];
                                 $category_name = htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8');
                         ?>
-                            <option <?php if (in_array($category_id_value, $selected_category_ids, true)) { ?>selected="selected" <?php }; ?>
-                             value="<?php echo (int)$row['id']; ?>"><?php echo $category_name; ?></option>
+                            <label>
+                                <input type="checkbox" name="categories[]" value="<?php echo (int)$row['id']; ?>" <?php if (in_array($category_id_value, $selected_category_ids, true)) { ?>checked <?php } ?> />
+                                <span><?php echo $category_name; ?></span>
+                            </label>
                         <?php
                             }
                         ?>
-                    </select>
+                    </div>
                 </div>
                 <span class="<?php echo isset($validation_errors['categories']) ? 'error' : ''; ?>"><?php echo htmlspecialchars($validation_errors['categories'] ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
+            </div>
 
             <hr />
                 
             <p align="center"> *Fields marked with an asterisk are required!</p>
                 
-            <div class="">
-                <button type="submit" name="register" class="">Let's ride!</button>
+            <div class="form-actions">
+                <button type="submit" name="register">Let's ride!</button>
             </div>
                 
             <div class="success">

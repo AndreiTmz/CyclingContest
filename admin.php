@@ -129,11 +129,11 @@
 			mysqli_stmt_execute($statement, $parameters);
 			$result = mysqli_stmt_get_result($statement);
 			if (mysqli_num_rows($result) == 0) {
-					echo '<b><center>No competitors found</center></b>';
+				echo '<div class="empty-state" role="status">No competitors found.</div>';
 			} else {
 		?>
 
-<table width="100%" id="competitors-results">
+<table class="data-table" id="competitors-results">
 	<tr>
 		<th>No.<br /></th>
 		<th>Name</th>

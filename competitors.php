@@ -28,7 +28,6 @@
         'name_value' => $search_name,
         'gender_value' => $gender_filter,
         'age_category_value' => $age_filter,
-        'style' => 'margin-left:150px;',
     ];
     include __DIR__ . '/shared/search_form.php';
 ?>
@@ -69,13 +68,13 @@
 
     if (mysqli_num_rows($result) == 0) 
     {
-        echo '<b><center>There\'s no competitor registered or the search term does not match any competitors.</center></b>';
+        echo '<div class="empty-state" role="status">No competitors found.</div>';
     }
     else
     {
 ?>
 
-<table border="2px" align="center" width="600px">
+<table class="data-table">
     <tr>
         <th>No.</th>
         <th>Name</th>
