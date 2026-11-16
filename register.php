@@ -198,7 +198,7 @@
             <div>
                 <div>
                     <span><span></span>First name*</span>
-                    <input type="text" name="first_name" class="right" placeholder="John" maxlength="50" value="<?php echo $given_first_name; ?>" autocomplete="given-name" required autofocus />
+                    <input type="text" name="first_name" placeholder="John" maxlength="50" value="<?php echo $given_first_name; ?>" autocomplete="given-name" required autofocus />
                 </div>
                 <span class="<?php echo isset($validation_errors['first_name']) ? 'error' : ''; ?>"><?php echo htmlspecialchars($validation_errors['first_name'] ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
             </div>
@@ -208,7 +208,7 @@
             <div class="">
                 <div class=""> 
                     <span class=""><span class=""></span>Last name*</span>
-                    <input type="text" name="last_name" class="right" placeholder="Doe" maxlength="50" value="<?php echo $given_last_name;?>" autocomplete="family-name" required />
+                    <input type="text" name="last_name" placeholder="Doe" maxlength="50" value="<?php echo $given_last_name;?>" autocomplete="family-name" required />
                 </div>
                 <span class="<?php echo isset($validation_errors['last_name']) ? 'error' : ''; ?>"><?php echo htmlspecialchars($validation_errors['last_name'] ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
             </div>
@@ -218,7 +218,7 @@
             <div class="">
                 <div class="">
                     <span class=""><span class=""></span>Date of birth*</span>
-                    <input type="date" name="date_of_birth" class="right" lang="en-GB" max="<?php echo date('Y-m-d'); ?>" value="<?php echo $given_date_of_birth;?>" required />
+                    <input type="date" name="date_of_birth" lang="en-GB" max="<?php echo date('Y-m-d'); ?>" value="<?php echo $given_date_of_birth;?>" required />
                 </div>
                 <span class="<?php echo isset($validation_errors['date_of_birth']) ? 'error' : ''; ?>"><?php echo htmlspecialchars($validation_errors['date_of_birth'] ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
             </div>
@@ -228,7 +228,7 @@
             <div class="">
                 <div class="">
                     <span class=""><span class=""></span>Email*</span>
-                    <input type="email" name="email" class="right" placeholder="john.doe@example.com" maxlength="254" value="<?php echo $given_email;?>" autocomplete="email" required />
+                    <input type="email" name="email" placeholder="john.doe@example.com" maxlength="254" value="<?php echo $given_email;?>" autocomplete="email" required />
                 </div>
                 <span class="<?php echo isset($validation_errors['email']) ? 'error' : ''; ?>"><?php echo htmlspecialchars($validation_errors['email'] ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
             </div >
@@ -238,7 +238,7 @@
             <div class="">
                 <div class="">
                     <span class=""><span class=""></span>Phone number*</span>
-                    <input type="tel" name="phone_number" class="right" placeholder="0788100100" maxlength="20" pattern="[0-9]{7,20}" inputmode="numeric" value="<?php echo $given_phone_number;?>" autocomplete="tel" required />
+                    <input type="tel" name="phone_number" placeholder="0788100100" maxlength="20" pattern="[0-9]{7,20}" inputmode="numeric" value="<?php echo $given_phone_number;?>" autocomplete="tel" required />
                 </div>
                 <span class="<?php echo isset($validation_errors['phone_number']) ? 'error' : ''; ?>"><?php echo htmlspecialchars($validation_errors['phone_number'] ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
             </div>

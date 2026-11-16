@@ -322,8 +322,7 @@ h3 {
 }
 
 button,
-input,
-select {
+input {
 	font: inherit;
 }
 
@@ -345,8 +344,7 @@ button:hover {
 
 button:focus-visible,
 a:focus-visible,
-input:focus-visible,
-select:focus-visible {
+input:focus-visible {
 	outline: 3px solid #aebf43;
 	outline-offset: 2px;
 }
@@ -357,8 +355,7 @@ button:disabled {
 	cursor: not-allowed;
 }
 
-input,
-select {
+input {
 	max-width: 100%;
 	min-height: 38px;
 	padding: 7px 9px;
@@ -398,11 +395,6 @@ hr {
 	border-radius: 6px;
 	box-shadow: 0 8px 24px rgba(20, 50, 37, 0.08);
 	text-align: center;
-}
-
-body:not(.registration-page) #form {
-	float: none;
-	margin: 18px auto !important;
 }
 
 .in-form {
@@ -601,19 +593,8 @@ body:not(.registration-page) #form {
 	margin: 4px 0;
 }
 
-.in-form input:not([type="radio"]),
-.in-form select {
+.in-form input:not([type="radio"]):not([type="checkbox"]) {
 	width: 200px;
-}
-
-.right {
-	float: right;
-	margin: 0 5px;
-}
-
-.gender input {
-	width: 30px;
-	margin: 0 4px 0 12px;
 }
 
 .success {
@@ -621,8 +602,7 @@ body:not(.registration-page) #form {
 	font-size: 17px;
 }
 
-.error,
-.loginError {
+.error {
 	color: var(--danger);
 	font-size: 13px;
 	font-weight: 700;
@@ -844,10 +824,6 @@ tr:nth-child(even) td {
 	background-image: url("../images/path.jpg");
 }
 
-body.results-page hr {
-	display: none;
-}
-
 .results-intro {
 	max-width: 940px;
 	margin: 8px auto 22px;
@@ -865,10 +841,6 @@ body.results-page hr {
 .results-intro p {
 	margin: 0;
 	color: var(--muted);
-}
-
-.results-page > h1 {
-	color: var(--forest-deep);
 }
 
 .media-page {
@@ -1186,8 +1158,7 @@ body.registration-page .in-form > div > div {
 	min-width: 0;
 }
 
-body.registration-page .in-form input:not([type="radio"]),
-body.registration-page .in-form select {
+body.registration-page .in-form input:not([type="radio"]):not([type="checkbox"]) {
 	width: 100%;
 	min-width: 0;
 	margin: 0;
@@ -1196,10 +1167,6 @@ body.registration-page .in-form select {
 body.registration-page .in-form .gender {
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 	grid-column: 1 / -1;
-}
-
-body.registration-page .in-form .gender label {
-	flex: initial;
 }
 
 body.registration-page .in-form > div > .category-field {
@@ -1388,8 +1355,7 @@ body.registration-page .viewMedia {
 		width: 100%;
 	}
 
-	.in-form input:not([type="radio"]),
-	.in-form select {
+	.in-form input:not([type="radio"]):not([type="checkbox"]) {
 		width: 58%;
 	}
 
