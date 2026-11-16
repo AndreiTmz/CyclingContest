@@ -920,7 +920,7 @@ a:focus-visible {
 .preview-app-backdrop {
     padding: clamp(10px, 2.4vw, 28px);
     border-radius: 8px;
-    background: #31483e url("images/MountainBike.jpg") center / cover no-repeat;
+    background: #31483e url("images/background_landscape.jpg") center / cover no-repeat;
 }
 
 .app-preview-window {
