@@ -19,6 +19,7 @@
 	}
 	$csrf_token = $_SESSION['admin_csrf_token'];
 	$action_error = '';
+	$updated_row_id = null;
 	$search_name = is_string($_POST['name'] ?? null) ? trim($_POST['name']) : '';
 	$age_filter = is_string($_POST['age_category'] ?? null) ? $_POST['age_category'] : '';
 	$gender_filter = is_string($_POST['gender'] ?? null) ? strtoupper($_POST['gender']) : '';
@@ -62,13 +63,19 @@
 			if ($status !== null && $set_finish_position) {
 				$statement = mysqli_prepare($link, 'UPDATE results SET finish_position = ?, status = ? WHERE competitor_id = ? AND category_id = ?');
 				mysqli_stmt_bind_param($statement, 'isii', $finish_position, $status, $competitor_id, $category_id);
-				mysqli_stmt_execute($statement);
+				$update_succeeded = mysqli_stmt_execute($statement);
 				mysqli_stmt_close($statement);
+				if ($update_succeeded) {
+					$updated_row_id = 'result-' . $competitor_id . '-' . $category_id;
+				}
 			} elseif ($status !== null) {
 				$statement = mysqli_prepare($link, 'UPDATE results SET status = ?, finish_position = NULL WHERE competitor_id = ? AND category_id = ?');
 				mysqli_stmt_bind_param($statement, 'sii', $status, $competitor_id, $category_id);
-				mysqli_stmt_execute($statement);
+				$update_succeeded = mysqli_stmt_execute($statement);
 				mysqli_stmt_close($statement);
+				if ($update_succeeded) {
+					$updated_row_id = 'result-' . $competitor_id . '-' . $category_id;
+				}
 			} elseif ($action_error === '') {
 				$action_error = 'Choose a result action.';
 			}
@@ -145,7 +152,7 @@
 	</tr>
 	
 	<?php while($row = mysqli_fetch_assoc($result)){ ?>
-		<tr>
+		<tr id="result-<?php echo (int)$row['competitor_id']; ?>-<?php echo (int)$row['category_id']; ?>">
 			<td> <?php echo (int)$row['competitor_id']; ?> </td>
 			<td> <?php echo $escape_html($row['first_name'] . ' ' . $row['last_name']); ?> </td>
 			<td> <?php echo $escape_html($row['category_name']); ?> </td>
@@ -162,10 +169,10 @@
 					<input type="hidden" name="age_category" value="<?php echo $escape_html($age_filter); ?>">
 					<input type="hidden" name="gender" value="<?php echo $escape_html($gender_filter); ?>">
 
-					<button type="submit" name="finish_position" value="1" class="changeReward">1st</button>
-					<button type="submit" name="finish_position" value="2" class="changeReward">2nd</button>
-					<button type="submit" name="finish_position" value="3" class="changeReward">3rd</button>
-					<button type="submit" name="finish_position" value="not_awarded" class="changeReward">
+					<button type="submit" name="finish_position" value="1" class="changeReward action-place">1st</button>
+					<button type="submit" name="finish_position" value="2" class="changeReward action-place">2nd</button>
+					<button type="submit" name="finish_position" value="3" class="changeReward action-place">3rd</button>
+					<button type="submit" name="finish_position" value="not_awarded" class="changeReward action-status">
 						Not Awarded
 					</button>
 				</form>
@@ -179,8 +186,8 @@
 					<input type="hidden" name="age_category" value="<?php echo $escape_html($age_filter); ?>">
 					<input type="hidden" name="gender" value="<?php echo $escape_html($gender_filter); ?>">
 
-					<button type="submit" name="disqualify" value="disqualify" class="changeReward">Disqualify</button>
-					<button type="submit" name="not_finished" value="not_finished" class="changeReward">Not Finished</button>
+					<button type="submit" name="disqualify" value="disqualify" class="changeReward action-danger">Disqualify</button>
+					<button type="submit" name="not_finished" value="not_finished" class="changeReward action-status">Not Finished</button>
 				</form>
 			</td>
 		</tr>
@@ -189,6 +196,11 @@
 	<?php 
 		}
 	?>
+<?php if ($updated_row_id !== null) { ?>
+<script>
+	document.getElementById(<?php echo json_encode($updated_row_id); ?>)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+</script>
+<?php } ?>
 <?php 
 	include("shared/footer.php"); 
 ?>

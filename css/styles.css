@@ -1073,15 +1073,51 @@ button.route:disabled {
 }
 
 .changeReward {
-	display: inline-block;
-	min-height: 32px;
-	margin: 2px;
+	min-height: 30px;
+	margin: 0;
 	padding: 5px 8px;
-	font-size: 12px;
+	border-color: var(--line);
+	background: #fff;
+	color: var(--forest);
+	font-size: 11px;
+	line-height: 1.2;
 }
 
-#competitors-results form {
-	display: inline-block;
+#competitors-results td form {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 4px;
+}
+
+#competitors-results .changeReward:hover {
+	border-color: var(--forest);
+	background: var(--forest);
+	color: #fff;
+	transform: translateY(-1px);
+}
+
+#competitors-results .action-place {
+	min-width: 38px;
+	padding-right: 7px;
+	padding-left: 7px;
+	background: var(--soft);
+}
+
+#competitors-results .action-status {
+	background: rgba(238, 244, 235, 0.6);
+}
+
+#competitors-results .action-danger {
+	border-color: #e4c5bd;
+	background: #fff8f5;
+	color: #8d3f32;
+}
+
+#competitors-results .action-danger:hover {
+	border-color: #8d3f32;
+	background: #8d3f32;
+	color: #fff;
 }
 
 .registration-layout {
