@@ -1118,6 +1118,48 @@ button.route:disabled {
 	align-items: start;
 }
 
+.login-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	max-width: 520px;
+	margin: 0 auto 28px;
+}
+
+body.login-page #form {
+	float: none;
+	width: 100%;
+	min-width: 0;
+	margin: 0;
+	text-align: left;
+}
+
+body.login-page .in-form > div > div {
+	display: grid;
+	grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+	align-items: center;
+	gap: 12px;
+	min-width: 0;
+}
+
+body.login-page .in-form input:not([type="radio"]) {
+	width: 100%;
+	min-width: 0;
+	margin: 0;
+}
+
+body.login-page .in-form > .form-actions {
+	display: flex;
+	justify-content: center;
+}
+
+.login-error {
+	margin: 10px 0;
+	color: var(--danger);
+	font-size: 13px;
+	font-weight: 700;
+	text-align: center;
+}
+
 body.registration-page .register_img {
 	float: none;
 	width: 100%;
@@ -1267,6 +1309,17 @@ body.registration-page .viewMedia {
 		min-height: 135px;
 	}
 
+	.photo-experience,
+	.video-grid,
+	.route-explorer {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.photo-gallery {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		max-height: 260px;
+	}
+
 	.search-form {
 		padding: 14px;
 	}
@@ -1307,6 +1360,7 @@ body.registration-page .viewMedia {
 		grid-template-columns: minmax(0, 1fr);
 		gap: 14px;
 	}
+
 
 	body.registration-page .register_img {
 		max-width: 260px;

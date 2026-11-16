@@ -76,7 +76,6 @@
 	}
 ?>	
 
-<a href="logout.php">Logout</a>	
 <?php if ($action_error !== '') { ?>
 <p class="error"><?php echo $escape_html($action_error); ?></p>
 <?php } ?>

@@ -1,6 +1,7 @@
 <?php
     $page_title = "Login";
     $section = "Login";
+    $body_class = 'login-page';
     include("shared/db_connect.php");
 
     if (!empty($_SESSION['authenticated'])) {
@@ -44,34 +45,38 @@
 
 <h1 align="center">Only authorized persons can access this page!</h1>
 
-<div id="form" style="margin:10px 0 10px 270px;">
-    <form action="login.php" method="post">
-        <div class="in-form">
-            <div>
+<div class="login-layout">
+    <div id="form">
+        <form action="login.php" method="post">
+            <div class="in-form">
                 <div>
-                    <span>Username</span>
-                    <input type="text" value="" name="user" class="right" placeholder="Enter username" maxlength="20" autofocus />
-                </div>						
-            </div>
-            
-            <hr />
-            
-            <div>
+                    <div>
+                        <label for="admin-user">Username</label>
+                        <input id="admin-user" type="text" name="user" value="<?php echo htmlspecialchars($user, ENT_QUOTES, 'UTF-8'); ?>" placeholder="Enter username" maxlength="20" autocomplete="username" autofocus required />
+                    </div>
+                </div>
+
+                <hr />
+
                 <div>
-                    <span>Password</span>
-                    <input type="password" value="" name="password" class="right" placeholder="Enter password" maxlength="100" />
-                </div>	
+                    <div>
+                        <label for="admin-password">Password</label>
+                        <input id="admin-password" type="password" name="password" placeholder="Enter password" maxlength="100" autocomplete="current-password" required />
+                    </div>
+                </div>
+
+                <?php if ($loginError !== '') { ?>
+                    <p class="login-error" role="alert"><?php echo htmlspecialchars($loginError, ENT_QUOTES, 'UTF-8'); ?></p>
+                <?php } ?>
+
+                <hr />
+
+                <div class="form-actions">
+                    <button type="submit" name="admin">Sign in</button>
+                </div>
             </div>
-            
-            <hr />
-            
-            <span <?php if($error==true) echo 'class="loginError"';?>><?php echo $loginError; ?> </span>
-            
-            <div class="">
-                <button type="submit" name="admin"> Login</button>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 
 <?php
