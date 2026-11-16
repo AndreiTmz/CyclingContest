@@ -10,7 +10,7 @@
 	<title><?php echo isset($page_title) ? $page_title : ''; ?></title>
     
     <link rel="stylesheet" href="css/styles.css" type="text/css" >
-
+    <link rel="icon" href="images/favicon.ico">
     <script src="js/rollover.js"></script>
 
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
