@@ -5,7 +5,16 @@
         return;
     }
 
+    const menuTargets = {
+        registration: 'register',
+        competitors: 'competitors',
+        results: 'results',
+        routes: 'media'
+    };
+
     const activateTab = (activeTab, moveFocus = false) => {
+        const activeMenuTarget = menuTargets[activeTab.dataset.previewTab];
+
         tabs.forEach((tab) => {
             const isActive = tab === activeTab;
             const panel = document.getElementById(tab.getAttribute('aria-controls'));
@@ -14,6 +23,10 @@
             tab.tabIndex = isActive ? 0 : -1;
             tab.classList.toggle('is-selected', isActive);
             panel.hidden = !isActive;
+        });
+
+        document.querySelectorAll('[data-preview-menu]').forEach((menuItem) => {
+            menuItem.classList.toggle('is-current', menuItem.dataset.previewMenu === activeMenuTarget);
         });
 
         if (moveFocus) {
