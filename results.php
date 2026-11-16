@@ -1,6 +1,7 @@
 <?php
     $page_title = "Results";
     $section = "Results";
+    $body_class = 'results-page';
     include ("shared/db_connect.php");
     include ("shared/header.php");
     include ("shared/enums.php");
@@ -26,8 +27,6 @@
 ?>
 
 
-
-<hr style="margin-bottom:50px;"/>
 
 <?php
     if ($selected_category) {
@@ -107,6 +106,11 @@
     </table>
 
 <?php } else { ?>
+
+    <header class="results-intro">
+        <h1>Competition results</h1>
+        <p>Choose a category to view the standings.</p>
+    </header>
 
     <div class="results-categories" align="center">
         <?php 
