@@ -4,14 +4,13 @@
     include ("shared/header.php");
 ?>
 
-    <h1 align="center" style="margin-top:45px;" >Photos and videos</h1>
-    <hr style="margin-bottom:50px;"/>
+    <h1 align="center">Media</h1>
 
-    <a href="photos.php"><button class="media" style="background-image:url(images/MountainBike.jpg);background-attachment:fixed; background-size:50%;"><b>Photos</b></button></a>
-
-    <a href="videos.php"><button class="media" style="background-image:url(images/vidbtn.jpg);background-attachment:fixed; background-size:50%;"><b>Videos</b></button></a>
-
-    <a href="routes.php"><button class="media" style="background-image:url(images/path.jpg);background-attachment:fixed; background-size:100%;"><b>Routes</b></button></a>
+    <div class="media-grid">
+        <a class="media-tile media-photos" href="photos.php">Photos</a>
+        <a class="media-tile media-videos" href="videos.php">Videos</a>
+        <a class="media-tile media-routes" href="routes.php">Routes</a>
+    </div>
 
 <?php
     include ("shared/footer.php");

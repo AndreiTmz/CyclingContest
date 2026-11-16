@@ -4,38 +4,29 @@
     include ("shared/header.php");
 ?>
 <script src="js/gallery.js"></script>
-<h1 align="center" style="font-style:oblique;">Photos</h1>
+<main class="media-page photo-page">
+	<header class="media-page-heading">
+		<h1>Photos</h1>
+	</header>
 
-<div class="photos">
-	<img src="images/gallery/img-1.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-2.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-3.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-4.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-5.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-6.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-7.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-8.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-9.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-10.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-11.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-12.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-13.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-14.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-15.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-16.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-17.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-18.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-19.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-20.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-	<img src="images/gallery/img-21.jpg" width="160px" height="150px" alt="" onclick="showImg(this)"/>
-</div>
+	<section class="photo-experience" aria-label="Cycling event photo gallery">
+		<div class="gallery-stage">
+			<img id="slider" src="images/gallery/img-1.jpg" alt="Cycling event photo" />
+			<div class="gallery-controls">
+				<button type="button" class="prev" aria-label="Previous photo" onclick="prev()">Previous</button>
+				<button type="button" class="next" aria-label="Next photo" onclick="next()">Next</button>
+			</div>
+		</div>
 
-<div>
-	
-	 <button class="prev" onclick="prev()" style="margin-left:25px;"> < Previous </button>
-     <img id="slider" width="650px" height="650px"/>
-    <button class="next" onclick="next()"> Next > </button>
-</div>
+		<div class="photos photo-gallery" aria-label="Photo thumbnails">
+			<?php for ($image_number = 1; $image_number <= 21; $image_number++) { ?>
+				<button type="button" class="photo-thumbnail" aria-label="Show photo <?php echo $image_number; ?>" onclick="showImg(this.querySelector('img'))">
+					<img src="images/gallery/img-<?php echo $image_number; ?>.jpg" alt="" />
+				</button>
+			<?php } ?>
+		</div>
+	</section>
+</main>
 
 <?php
     include ("shared/footer.php");
