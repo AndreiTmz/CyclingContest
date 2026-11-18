@@ -27,17 +27,8 @@ A PHP web application for running a cycling competition. Visitors can register f
 
 ### Start
 
-From the repository root, copy the example environment file:
-
-```sh
-cp .env.example .env
-```
-
-On Windows PowerShell, use:
-
-```powershell
-Copy-Item .env.example .env
-```
+In the repository root, copy the example environment file ".env.example".
+Rename the copy to ".env"
 
 To enable route maps, add a Google Maps API key to `.env`:
 

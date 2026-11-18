@@ -132,12 +132,12 @@ CREATE TABLE IF NOT EXISTS `results` (
 --
 
 INSERT INTO `results` (`competitor_id`, `category_id`, `finish_position`, `status`, `age_category`) VALUES
-(1, 1, NULL, 'DISQUALIFIED', 'JUNIOR'),
-(1, 2, NULL, 'FINISHED', 'JUNIOR'),
-(1, 3, NULL, 'FINISHED', 'JUNIOR'),
-(1, 4, NULL, 'FINISHED', 'JUNIOR'),
+(1, 1, NULL, 'REGISTERED', 'JUNIOR'),
+(1, 2, NULL, 'REGISTERED', 'JUNIOR'),
+(1, 3, NULL, 'REGISTERED', 'JUNIOR'),
+(1, 4, NULL, 'REGISTERED', 'JUNIOR'),
 (2, 1, NULL, 'REGISTERED', 'INTERMEDIATE'),
-(2, 2, NULL, 'FINISHED', 'INTERMEDIATE');
+(2, 2, NULL, 'REGISTERED', 'INTERMEDIATE');
 
 -- --------------------------------------------------------
 
